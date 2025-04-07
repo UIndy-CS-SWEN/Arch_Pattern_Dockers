@@ -8,6 +8,8 @@ services:
       - "80:80"
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - ./fix-permissions.sh:/usr/local/bin/fix-permissions.sh  # Mount the script
+    command: ["sh", "/usr/local/bin/fix-permissions.sh"]  # Run the script
     depends_on:
       - flask1
       - flask2
